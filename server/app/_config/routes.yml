@@ -1,0 +1,11 @@
+---
+Name: approutes
+After:
+  - '#rootroutes'
+  - '#coreroutes'
+  - '#adminroutes'
+---
+SilverStripe\Control\Director:
+  rules:
+    '$Model/$ID/$Action': TrinsicLabs\App\Controllers\AppController
+    '': TrinsicLabs\App\Controllers\AppController

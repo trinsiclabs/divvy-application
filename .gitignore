@@ -1,0 +1,12 @@
+node_modules
+/mariadb/
+*.css.map
+*.js.map
+/client/tests/e2e/_artifacts/
+/client/chromedriver.log
+/server/*.hot-update.*
+/server/.env
+/server/silverstripe.log
+/server/vendor/
+/server/resources/
+/server/public/resources/

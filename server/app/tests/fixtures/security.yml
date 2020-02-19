@@ -1,0 +1,29 @@
+SilverStripe\Security\PermissionRole:
+  AppAccessAll:
+    Title: Access to all app sections
+
+SilverStripe\Security\PermissionRoleCode:
+  AppAccessAll:
+    Code: APP_ACCESS_ALL
+    Role: =>SilverStripe\Security\PermissionRole.AppAccessAll
+
+SilverStripe\Security\Member:
+  JamesHalliday:
+    FirstName: James
+    Surname: Halliday
+    Email: james@oasis.com
+    Password: playha1
+    Verified: true
+
+  NolanSorrento:
+    FirstName: Nolan
+    Surname: Sorrento
+    Email: nolan@ioi.com
+    Password: B4dman69
+
+SilverStripe\Security\Group:
+  Subscribers:
+    Title: Subscribers
+    Code: subscribers
+    Roles: =>SilverStripe\Security\PermissionRole.AppAccessAll
+    Members: =>SilverStripe\Security\Member.JamesHalliday, =>SilverStripe\Security\Member.NolanSorrento

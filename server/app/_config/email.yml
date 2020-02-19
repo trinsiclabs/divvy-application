@@ -1,0 +1,31 @@
+---
+Name: appemail
+After:
+  - '#emailconfig'
+---
+---
+Except:
+  environment: 'live'
+---
+SilverStripe\Core\Injector\Injector:
+  Swift_Transport:
+    class: Swift_SmtpTransport
+    properties:
+      Host: mail.app.divvy.com
+      Port: 1025
+      Encryption: false
+---
+Only:
+  environment: 'live'
+---
+SilverStripe\Core\Injector\Injector:
+  Swift_Transport:
+    class: Swift_SmtpTransport
+    properties:
+      Host: '`SES_HOST`'
+      Port: 587
+      Encryption: tls
+    calls:
+      Username: [setUsername, ['`SES_USERNAME`']]
+      Password: [setPassword, ['`SES_PASSWORD`']]
+      AuthMode: [setAuthMode, ['login']]

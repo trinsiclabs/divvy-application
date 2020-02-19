@@ -1,0 +1,51 @@
+version: '3.3'
+
+networks:
+  network_divvy:
+    external: true
+
+services:
+  web.app.divvy.com:
+    image: php:7.3.6-apache
+    container_name: web.app.divvy.com
+    build:
+      context: ./php-apache
+    environment:
+      XDEBUG_CONFIG: remote_autostart=On remote_enable=On remote_host=host.docker.internal
+    ports:
+      - 80:80
+    volumes:
+      - ./server/:/var/www/html:cached
+      - ../host_queue:/var/www/html/host_queue
+    networks:
+      - network_divvy
+
+  db.app.divvy.com:
+    image: postgres:9.6.17-alpine
+    container_name: db.app.divvy.com
+    environment:
+        POSTGRES_PASSWORD: 'secret'
+        POSTGRES_DB: 'app'
+    networks:
+        - network_divvy
+
+  mail.app.divvy.com:
+    image: schickling/mailcatcher
+    container_name: mail.app.divvy.com
+    ports:
+      - 1080:1080
+    networks:
+      - network_divvy
+
+#   cli.app.divvy.com:
+#     image: alpine:3.10
+#     container_name: cli.app.divvy.com
+#     ports:
+#       - 3001:3001
+#     build:
+#       context: ./dev
+#     volumes:
+#       - ./client:/var/app/client
+#       - ./server:/var/app/server
+#     networks:
+#       - network_divvy

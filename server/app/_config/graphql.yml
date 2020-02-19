@@ -1,0 +1,24 @@
+SilverStripe\Control\Director:
+  rules:
+    'graphql': '%$SilverStripe\GraphQL\Controller.default'
+
+SilverStripe\GraphQL\Manager:
+  schemas:
+    default:
+      types:
+        account: 'TrinsicLabs\App\GraphQL\Type\AccountTypeCreator'
+        member: 'TrinsicLabs\App\GraphQL\Type\MemberTypeCreator'
+        siteConfig: 'TrinsicLabs\App\GraphQL\Type\SiteConfigTypeCreator'
+        todo: 'TrinsicLabs\App\GraphQL\Type\TodoTypeCreator'
+      queries:
+        readAccount: 'TrinsicLabs\App\GraphQL\Query\ReadAccountQueryCreator'
+        readMember: 'TrinsicLabs\App\GraphQL\Query\ReadMemberQueryCreator'
+        readSiteConfig: 'TrinsicLabs\App\GraphQL\Query\ReadSiteConfigQueryCreator'
+        readTodo: 'TrinsicLabs\App\GraphQL\Query\ReadTodoQueryCreator'
+      mutations:
+        addAccount: 'TrinsicLabs\App\GraphQL\Mutation\AddAccountMutationCreator'
+        addMember: 'TrinsicLabs\App\GraphQL\Mutation\AddMemberMutationCreator'
+        addTodo: 'TrinsicLabs\App\GraphQL\Mutation\AddTodoMutationCreator'
+        deleteTodo: 'TrinsicLabs\App\GraphQL\Mutation\DeleteTodoMutationCreator'
+        updateTodo: 'TrinsicLabs\App\GraphQL\Mutation\UpdateTodoMutationCreator'
+        verifyMember: 'TrinsicLabs\App\GraphQL\Mutation\VerifyMemberMutationCreator'

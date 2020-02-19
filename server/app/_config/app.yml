@@ -1,0 +1,21 @@
+---
+Name: app
+---
+LeKoala\DebugBar\DebugBar:
+  enabled_in_admin: false
+  check_local_ip: false
+
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: app
+
+SilverStripe\EnvironmentCheck\EnvironmentCheckSuite:
+  registered_checks:
+    db:
+      definition: 'DatabaseCheck("Member")'
+      title: 'Database accessible'
+    url:
+      definition: 'URLCheck("/")'
+      title: 'Homepage accessible'
+  registered_suites:
+    health:
+      - db
