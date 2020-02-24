@@ -7,5 +7,6 @@ After:
 ---
 SilverStripe\Control\Director:
   rules:
+    'graphql': '%$SilverStripe\GraphQL\Controller.default'
     '$Model/$ID/$Action': TrinsicLabs\App\Controllers\AppController
     '': TrinsicLabs\App\Controllers\AppController

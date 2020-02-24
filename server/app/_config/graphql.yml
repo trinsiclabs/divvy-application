@@ -1,7 +1,3 @@
-SilverStripe\Control\Director:
-  rules:
-    'graphql': '%$SilverStripe\GraphQL\Controller.default'
-
 SilverStripe\GraphQL\Manager:
   schemas:
     default:

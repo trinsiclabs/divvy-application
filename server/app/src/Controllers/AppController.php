@@ -28,7 +28,7 @@ class AppController extends Controller implements PermissionProvider
         parent::init();
 
         if (Director::isDev()) {
-            Requirements::javascript('http://localhost:3001/main.js');
+            Requirements::javascript('http://divvy.local:3001/main.js');
         } else {
             Requirements::javascript('app/main.js');
         }

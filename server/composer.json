@@ -4,12 +4,11 @@
     "description": "Trinsic Labs: App Starter Kit",
     "require": {
         "php": ">=7.1.0",
-        "silverstripe/recipe-core": "^4.4",
+        "silverstripe/recipe-core": "^4.5",
         "silverstripe/environmentcheck": "^2.1",
-        "dnadesign/silverstripe-populate": "^2.0",
-        "silverstripe/siteconfig": "^4.4",
-        "silverstripe/login-forms": "^4.0@beta",
-        "silverstripe/graphql": "^3.1"
+        "silverstripe/siteconfig": "^4.5",
+        "silverstripe/login-forms": "^4.1",
+        "silverstripe/graphql": "^3.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",

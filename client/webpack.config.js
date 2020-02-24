@@ -8,7 +8,7 @@ module.exports = {
 
   output: {
     path: outputPath,
-    publicPath: isDev ? 'http://localhost:3001/' : '/app/',
+    publicPath: isDev ? 'http://divvy.local:3001/' : '/app/',
     filename: '[name].js',
     chunkFilename: '[chunkhash].js',
   },

@@ -15,17 +15,19 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./server/:/var/www/html:cached
+      - ./server/:/var/www/html
       - ../host_queue:/var/www/html/host_queue
     networks:
       - network_divvy
 
   db.app.divvy.com:
-    image: postgres:9.6.17-alpine
+    image: mysql:5.7.29
     container_name: db.app.divvy.com
     environment:
-        POSTGRES_PASSWORD: 'secret'
-        POSTGRES_DB: 'app'
+      MYSQL_ROOT_PASSWORD: 'secret'
+      MYSQL_DATABASE: 'app'
+    volumes:
+      - ./database/:/var/lib/mysql
     networks:
         - network_divvy
 
@@ -37,15 +39,15 @@ services:
     networks:
       - network_divvy
 
-#   cli.app.divvy.com:
-#     image: alpine:3.10
-#     container_name: cli.app.divvy.com
-#     ports:
-#       - 3001:3001
-#     build:
-#       context: ./dev
-#     volumes:
-#       - ./client:/var/app/client
-#       - ./server:/var/app/server
-#     networks:
-#       - network_divvy
+  cli.app.divvy.com:
+    image: alpine:3.10
+    container_name: cli.app.divvy.com
+    ports:
+      - 3001:3001
+    build:
+      context: ./dev
+    volumes:
+      - ./client:/var/app/client
+      - ./server:/var/app/server
+    networks:
+      - network_divvy

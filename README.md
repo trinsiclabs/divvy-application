@@ -13,15 +13,36 @@ UI components are provided by [Material UI](https://material-ui.com/)
 There are a few containers which make up the client application:
 
 1. Apache / PHP
-2. Mariadb
+2. Postgres
 3. Mailcatcher (dev only)
 4. CLI
 
-Development tools (composer, Node.js etc) are provided by the CLI container.
-In a new terminal window, log into the container:
+### Configuration
+
+First login to the host VM:
 
 ```
-$ docker exec -it cli.app.divvy.com /bin/ash
+$ vagrant ssh
+```
+
+Print and paste the host IP address:
+
+```
+$ hostname -I
+```
+
+Add the following line to your hosts file so the application can be accessed on
+the `divvy.local` hostname.
+
+```
+HOST_VM_IP_ADDRESS divvy.local
+```
+
+Development tools (composer, Node.js etc) are provided by the CLI container.
+In a new terminal window, log into the container, from the host VM:
+
+```
+$ sudo docker exec -it cli.app.divvy.com /bin/ash
 ```
 
 You should see two directories:
@@ -55,25 +76,24 @@ For development, run `$ npm run start`
 
 For a production build, run `$ npm run build`
 
-### Environment variables
+#### Environment variables
 
 Create a `server/.env` file with the following variables:
 
 ```
 SS_DATABASE_CLASS='MySQLPDODatabase'
 SS_DATABASE_SERVER='db.app.divvy.com'
-SS_DATABASE_USERNAME='root'
+SS_DATABASE_USERNAME='postgres'
+SS_DATABASE_PASSWORD='secret'
 SS_DATABASE_NAME='app'
-SS_BASE_URL='http://localhost'
-SS_SEND_ALL_EMAILS_FROM='mail@localhost'
+SS_BASE_URL='http://divvy.local'
+SS_SEND_ALL_EMAILS_FROM='mail@divvy.local'
 SS_DEFAULT_ADMIN_USERNAME='admin'
 SS_DEFAULT_ADMIN_PASSWORD='admin'
 SS_ENVIRONMENT_TYPE='dev'
 SES_HOST=''
 SES_USERNAME=''
 SES_PASSWORD=''
-TL_DEMO_ACCOUNT_USERNAME='demo@localhost'
-TL_DEMO_ACCOUNT_PASSWORD='Password123!'
 ```
 
 Environment variables are loaded into the application in
@@ -84,25 +104,22 @@ must be updated.
 
 Once you've started the local services, installed the dependencies, and
 defined the environment variables, build the database by visiting
-`http://localhost/dev/build` in your browser.
+`http://divvy.local/dev/build` in your browser.
 
-It's useful to populate some test data when developing the app. The following
-build tasks do that for you.
+When the app is in dev more (see the `.env` file) you will also need to run the
+Webpack dev server. From the CLI container:
 
 ```
-http://localhost/dev/tasks/DNADesign-Populate-PopulateTask
-http://localhost/dev/tasks/TrinsicLabs-App-BuildTasks-DemoAccountTask
+$ cd client
+$ npm run start
 ```
 
-These can also be run from the CLI container using the
-[SilverStripe CLI](https://docs.silverstripe.org/en/4/developer_guides/cli/#sake-silverstripe-make)
-
-#### GraphQL
+### GraphQL
 
 There's some tooling for testing out GraphQL queries at:
 
 ```
-http://localhost/dev/graphiql/
+http://divvy.local/dev/graphiql/
 ```
 
 ### Running the tests
@@ -135,7 +152,7 @@ SS_ENVIRONMENT_TYPE
 
 ### Mailcatcher
 
-Mailcatcher is available on `http://localhost:1080`
+Mailcatcher is available on `http://divvy.local:1080`
 
 This will be used in `dev` and `test` environments.
 See `server/app/_config/email.yml` for more details.
