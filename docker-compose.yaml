@@ -11,8 +11,8 @@ services:
     build:
       context: ./php-apache
     environment:
+      APACHE_RUN_USER: '#1000'
       XDEBUG_CONFIG: remote_autostart=On remote_enable=On remote_host=host.docker.internal
-    command: 'chown www-data:www-data /var/www/html/host_queue'
     ports:
       - 80:80
     volumes:

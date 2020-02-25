@@ -42,6 +42,15 @@ HOST_VM_IP_ADDRESS divvy.local
 
 This lets you access the application on `http://divvy.local` in your browser.
 
+### Start the containers
+
+From the host VM:
+
+```
+$ cd /home/vagrant/application
+$ sudo docker-compose up -d
+```
+
 ### Install the dependencies
 
 Development tools (composer, Node.js etc) are provided by the CLI container.
