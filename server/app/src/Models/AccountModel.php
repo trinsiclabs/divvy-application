@@ -13,8 +13,20 @@ class AccountModel extends DataObject
     private static $table_name = 'TL_AccountModel';
 
     private static $db = [
-        'IsTestAccount' => 'Boolean',
-        'OrganisationName' => 'Varchar(64)',
+        'OrganisationCreated' => 'Boolean',
+        'OrganisationName' => 'Varchar',
+        'OrganisationSlug' => 'Varchar',
+    ];
+
+    private static $indexes = [
+        'OrganisationSlug' => [
+            'type' => 'unique',
+            'columns' => ['OrganisationSlug'],
+        ],
+    ];
+
+    private static $defaults = [
+        'OrganisationCreated' => false,
     ];
 
     private static $has_many = [
@@ -34,10 +46,6 @@ class AccountModel extends DataObject
     private static $summary_fields = [
         'OrganisationName',
         'getMemberCount' => 'Members',
-    ];
-
-    private static $defaults = [
-        'IsTestAccount' => false,
     ];
 
     public function getCMSFields()
@@ -62,5 +70,34 @@ class AccountModel extends DataObject
     public function getMemberCount()
     {
         return $this->Members()->count();
+    }
+
+    /**
+     * Create an organisation for the member on the Fabric network.
+     */
+    public function createOrganisation()
+    {
+        if (!$this->ID) {
+            throw new \LogicException('Can\'t create an org for an Account without an ID.');
+        }
+
+        if ($this->OrganisationCreated) {
+            throw new \LogicException('Account already has an organisation.');
+        }
+
+        $id = $this->ID;
+
+        // We can only have 99 users until orchestration is implemented
+        // because of port allocation on the Docker host.
+        if ($id < 10) {
+            $id = "0${id}";
+        } else if ($id > 99) {
+            throw new \LogicException('Org limit reached, we can only have 99.');
+        }
+
+        $this->OrganisationCreated = true;
+        $this->write();
+
+        exec("echo './organisation.sh create --org $this->OrganisationSlug --pport 81$id --ccport 82$id --caport 83$id' > /var/www/html/host_queue");
     }
 }

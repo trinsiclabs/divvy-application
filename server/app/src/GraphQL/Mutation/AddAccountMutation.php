@@ -3,6 +3,7 @@
 namespace TrinsicLabs\App\GraphQL\Mutation;
 
 use GraphQL\Type\Definition\Type;
+use SilverStripe\Core\Convert;
 use SilverStripe\Security\Member;
 use GraphQL\Type\Definition\ResolveInfo;
 use TrinsicLabs\App\Models\AccountModel;
@@ -35,10 +36,8 @@ class AddAccountMutationCreator extends MutationCreator implements OperationReso
     {
         $account = AccountModel::create();
 
-        if (isset($args['OrganisationName'])) {
-            $account->OrganisationName = $args['OrganisationName'];
-        }
-
+        $account->OrganisationName = $args['OrganisationName'];
+        $account->OrganisationSlug = Convert::raw2url($args['OrganisationName']);
         $account->write();
 
         if (isset($args['Members'])) {

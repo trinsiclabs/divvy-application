@@ -7,20 +7,6 @@ SilverStripe\Security\PermissionRoleCode:
     Code: APP_ACCESS_ALL
     Role: =>SilverStripe\Security\PermissionRole.AppAccessAll
 
-SilverStripe\Security\Member:
-  JamesHalliday:
-    FirstName: James
-    Surname: Halliday
-    Email: james@oasis.com
-    Password: playha1
-    Verified: true
-
-  NolanSorrento:
-    FirstName: Nolan
-    Surname: Sorrento
-    Email: nolan@ioi.com
-    Password: B4dman69
-
 SilverStripe\Security\Group:
   Subscribers:
     Title: Subscribers

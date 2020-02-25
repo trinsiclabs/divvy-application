@@ -44,6 +44,14 @@ class VerifyMemberMutationCreator extends MutationCreator implements OperationRe
         $member->Verified = true;
         $member->write();
 
+        // Wait until the member is verified before creating an org
+        // on the Fabric network.
+        $account = $member->Account();
+
+        if (!$account->OrganisationCreated) {
+            $account->createOrganisation();
+        }
+
         return $member;
     }
 }

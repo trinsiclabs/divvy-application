@@ -82,7 +82,7 @@ class MemberExtension extends DataExtension
             $verificationUrl = Director::absoluteBaseURL() . 'signup/confirm/' . $member->VerificationToken;
 
             $email = Email::create()
-                ->setSubject('Email verification')
+                ->setSubject('Divvy verification')
                 ->setBody(
                     '<p>Please click the link below to confirm your email address.</p>' .
                     '<p><a href="' . $verificationUrl . '">' . $verificationUrl . '</a></p>'

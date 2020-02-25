@@ -164,10 +164,11 @@ const SignupPage = props => {
                           <Grid item xs={12}>
                             <TextField
                               id='organisationName'
-                              label='Organisation (optional)'
+                              label='Organisation'
                               onChange={handleChange}
                               type='text'
                               variant='outlined'
+                              required
                               fullWidth
                               error={errors.organisationName || undefined}
                             />

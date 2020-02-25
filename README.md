@@ -13,11 +13,14 @@ UI components are provided by [Material UI](https://material-ui.com/)
 There are a few containers which make up the client application:
 
 1. Apache / PHP
-2. Postgres
+2. MySQL
 3. Mailcatcher (dev only)
 4. CLI
 
-### Configuration
+Before going any further make sure you have set up the host VM as described in
+the [platform docs](https://github.com/flashbackzoo/divvy).
+
+### Set up the domain name
 
 First login to the host VM:
 
@@ -25,18 +28,21 @@ First login to the host VM:
 $ vagrant ssh
 ```
 
-Print and paste the host IP address:
+Print and copy the host IP address:
 
 ```
 $ hostname -I
 ```
 
-Add the following line to your hosts file so the application can be accessed on
-the `divvy.local` hostname.
+Add the following line to your local (*not* the host VM) hosts file:
 
 ```
 HOST_VM_IP_ADDRESS divvy.local
 ```
+
+This lets you access the application on `http://divvy.local` in your browser.
+
+### Install the dependencies
 
 Development tools (composer, Node.js etc) are provided by the CLI container.
 In a new terminal window, log into the container, from the host VM:
@@ -45,52 +51,60 @@ In a new terminal window, log into the container, from the host VM:
 $ sudo docker exec -it cli.app.divvy.com /bin/ash
 ```
 
-You should see two directories:
+You should see two directories `client` and `server`:
 
 ```
 $ ls
-
-client
-server
 ```
 
 These volumes map to the `client` and `server` directories in the application
-root and contain the front-end and back-end of the app respectively.
+root and contain the front-end and back-end code respectively.
 
 The CLI container has all the tools you need to build the app. Start by
 installing the PHP dependencies from the `server` directory:
 
 ```
+$ cd /var/app/server
 $ composer install
 ```
 
 From the `client` directory, install the JavaScript dependencies:
 
 ```
+$ cd /var/app/client
 $ npm install
 ```
 
-Scripts for building the front-end are in `client/package.json`
+Scripts for building the front-end are in `/var/app/client/package.json`
 
-For development, run `$ npm run start`
+For development run:
 
-For a production build, run `$ npm run build`
+```
+$ npm run start`
+```
 
-#### Environment variables
+For a production build run:
 
-Create a `server/.env` file with the following variables:
+```
+$ npm run build
+```
+
+### Define environment variables
+
+From the host VM, create `/home/vagrant/application/server` with
+the following variables:
 
 ```
 SS_DATABASE_CLASS='MySQLPDODatabase'
 SS_DATABASE_SERVER='db.app.divvy.com'
-SS_DATABASE_USERNAME='postgres'
+SS_DATABASE_USERNAME='root'
 SS_DATABASE_PASSWORD='secret'
 SS_DATABASE_NAME='app'
 SS_BASE_URL='http://divvy.local'
 SS_SEND_ALL_EMAILS_FROM='mail@divvy.local'
 SS_DEFAULT_ADMIN_USERNAME='admin'
 SS_DEFAULT_ADMIN_PASSWORD='admin'
-SS_ENVIRONMENT_TYPE='dev'
+SS_ENVIRONMENT_TYPE='live'
 SES_HOST=''
 SES_USERNAME=''
 SES_PASSWORD=''
@@ -106,15 +120,17 @@ Once you've started the local services, installed the dependencies, and
 defined the environment variables, build the database by visiting
 `http://divvy.local/dev/build` in your browser.
 
-When the app is in dev more (see the `.env` file) you will also need to run the
-Webpack dev server. From the CLI container:
+By default this will be running the production build. You need to change
+`SS_ENVIRONMENT_TYPE` in `.env` from `live` to `dev` for development.
+Then you can start the Webpack dev server and see your changes
+in the browser:
 
 ```
-$ cd client
+$ cd /home/vagrant/application/client
 $ npm run start
 ```
 
-### GraphQL
+#### GraphQL
 
 There's some tooling for testing out GraphQL queries at:
 
