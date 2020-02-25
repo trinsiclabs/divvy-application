@@ -6,6 +6,7 @@ node_modules
 /client/chromedriver.log
 /server/*.hot-update.*
 /server/.env
+/server/host_queue
 /server/silverstripe.log
 /server/vendor/
 /server/resources/
