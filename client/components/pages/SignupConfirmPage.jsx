@@ -17,7 +17,7 @@ let SignupConfirmPage = props => {
     verifyMember({ variables: { token: props.token } })
       .then(() => {
         setDoneTitle('Success');
-        setDoneMessage('We have successfully verified your account. You can now login and get started.');
+        setDoneMessage('You\'ve successfuly verified your account and we\'re now issuing your shares. Check your email in a few minutes for your login link.');
       })
       .catch(() => {
         setDoneTitle('Failed to verify your account');

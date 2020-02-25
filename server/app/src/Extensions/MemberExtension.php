@@ -67,7 +67,9 @@ class MemberExtension extends DataExtension
             $result->addError('You need to verify your email address before logging in.');
         }
 
-        if (!$this->owner->Account()->exists()) {
+        $account = $this->owner->Account();
+
+        if (!$account->exists() || !$account->OrganisationCreated) {
             $result->addError('We\'re still setting up your account.');
         }
     }
