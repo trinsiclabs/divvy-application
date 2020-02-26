@@ -12,6 +12,7 @@ import { PAGES } from '../../constants';
 const withLayout = WrappedComponent => {
   let LayoutProvider = props => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const allowPublicSignup = props.siteConfig.data.readSiteConfig[0].AllowPublicSignup;
 
     return (
       <React.Fragment>
@@ -28,7 +29,7 @@ const withLayout = WrappedComponent => {
               title={props.headerTitle}
               onClickLogo={() => props.routeTo(PAGES.HOME.PATH)}
               onClickLogin={() => { window.location = PAGES.LOGIN.PATH; }}
-              onClickSignup={() => props.routeTo(PAGES.SIGNUP.PATH)}
+              onClickSignup={allowPublicSignup ? () => props.routeTo(PAGES.SIGNUP.PATH) : null}
               showProgress={false}
             />
         }
