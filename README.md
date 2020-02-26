@@ -51,53 +51,6 @@ $ cd /home/vagrant/application
 $ sudo docker-compose up -d
 ```
 
-### Install the dependencies
-
-Development tools (composer, Node.js etc) are provided by the CLI container.
-In a new terminal window, log into the container, from the host VM:
-
-```
-$ sudo docker exec -it cli.app.divvy.com /bin/ash
-```
-
-You should see two directories `client` and `server`:
-
-```
-$ ls
-```
-
-These volumes map to the `client` and `server` directories in the application
-root and contain the front-end and back-end code respectively.
-
-The CLI container has all the tools you need to build the app. Start by
-installing the PHP dependencies from the `server` directory:
-
-```
-$ cd /var/app/server
-$ composer install
-```
-
-From the `client` directory, install the JavaScript dependencies:
-
-```
-$ cd /var/app/client
-$ npm install
-```
-
-Scripts for building the front-end are in `/var/app/client/package.json`
-
-For development run:
-
-```
-$ npm run start`
-```
-
-For a production build run:
-
-```
-$ npm run build
-```
-
 ### Define environment variables
 
 From the host VM, create `/home/vagrant/application/server` with
@@ -122,6 +75,65 @@ SES_PASSWORD=''
 Environment variables are loaded into the application in
 `includes/constants.php`. When adding new environment variables, this file
 must be updated.
+
+### Install the dependencies
+
+Development tools (composer, Node.js etc) are provided by the CLI container.
+In a new terminal window, log into the container, from the host VM:
+
+```
+$ sudo docker exec -it cli.app.divvy.com /bin/ash
+```
+
+You should see two directories `client` and `server`:
+
+```
+$ ls
+```
+
+These volumes map to the `client` and `server` directories in the application
+root and contain the front-end and back-end code respectively. The CLI
+container has all the tools you need to build the app.
+
+#### Server
+
+Install the PHP dependencies from the `server` directory:
+
+```
+$ cd /var/app/server
+$ composer install
+```
+
+Now you have the PHP dependencies installed, you can provision the database:
+
+```
+$ ./vendor/bin/sake dev/build
+```
+
+You should see output saying the database build completed.
+
+#### Client
+
+From the `client` directory, install the JavaScript dependencies:
+
+```
+$ cd /var/app/client
+$ npm install
+```
+
+Scripts for building the front-end are in `/var/app/client/package.json`
+
+For development run:
+
+```
+$ npm run start`
+```
+
+For a production build run:
+
+```
+$ npm run build
+```
 
 ### Using the app
 
