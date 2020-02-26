@@ -46,16 +46,6 @@ const DrawerComponent = props => {
             </ListItemIcon>
             <ListItemText primary='Dashboard' />
           </ListItem>
-
-          <ListItem
-            button
-            onClick={handleListItemClick(props.routeTo, PAGES.TODOS.PATH)}
-          >
-            <ListItemIcon>
-              <ListIcon />
-            </ListItemIcon>
-            <ListItemText primary='Todos' />
-          </ListItem>
         </List>
       </div>
     </Drawer>

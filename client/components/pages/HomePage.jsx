@@ -24,7 +24,7 @@ const HomePage = props => {
           variant='subtitle1'
           gutterBottom
         >
-            This simple Todo app can be used to quick-start your prototype.
+            Divvy is an awesome micro-equity platform.
         </Typography>
       </Grid>
     </Grid>

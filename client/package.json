@@ -1,7 +1,7 @@
 {
-  "name": "trinsic-labs-app-starter-kit",
+  "name": "divvy-app-client",
   "version": "1.0.0",
-  "description": "Trinsic Labs: App Starter Kit",
+  "description": "Front-end for the Divvy client application.",
   "private": true,
   "scripts": {
     "prebuild": "rimraf ../server/public/app",

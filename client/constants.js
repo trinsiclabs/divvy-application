@@ -34,16 +34,4 @@ export const PAGES = {
     TITLE: 'Confirm your email',
     PATH: '/signup/confirm/:token',
   },
-  TODO_ADD: {
-    TITLE: 'Add Todo',
-    PATH: '/todos/add',
-  },
-  TODO_EDIT: {
-    TITLE: 'Edit Todo',
-    PATH: '/todos/:todoId/edit',
-  },
-  TODOS: {
-    TITLE: 'Todos',
-    PATH: '/todos',
-  },
 };

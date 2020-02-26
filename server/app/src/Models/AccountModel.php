@@ -6,7 +6,6 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Security\Member;
 use SilverStripe\Forms\RequiredFields;
-use TrinsicLabs\App\Models\TodoModel;
 
 class AccountModel extends DataObject
 {
@@ -31,12 +30,10 @@ class AccountModel extends DataObject
 
     private static $has_many = [
         'Members' => Member::class,
-        'Todos' => TodoModel::class,
     ];
 
     private static $cascade_deletes = [
         'Members',
-        'Todos',
     ];
 
     private static $searchable_fields = [

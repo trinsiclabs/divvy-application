@@ -18,7 +18,7 @@ const Unauthenticated = props => {
         render={() => (
           <HomePage
             { ...props }
-            headerTitle='App Starter Kit'
+            headerTitle='Divvy'
           />
         )}
       />

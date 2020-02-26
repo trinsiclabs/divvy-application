@@ -9,9 +9,3 @@ en:
       one: 'An Account Model'
       other: '{count} Account Models'
     SINGULARNAME: 'Account Model'
-  TrinsicLabs\App\Models\TodoModel:
-    PLURALNAME: 'Todo Models'
-    PLURALS:
-      one: 'A Todo Model'
-      other: '{count} Todo Models'
-    SINGULARNAME: 'Todo Model'

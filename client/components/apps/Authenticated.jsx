@@ -6,9 +6,6 @@ import withRouting from '../providers/RoutingProvider';
 
 const DashboardPage = React.lazy(() => import('../pages/DashboardPage'));
 const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage'));
-const TodoAddPage = React.lazy(() => import('../pages/TodoAddPage'));
-const TodoEditPage = React.lazy(() => import('../pages/TodoEditPage'));
-const TodosPage = React.lazy(() => import('../pages/TodosPage'));
 
 const Authenticated = props => {
   return (
@@ -32,37 +29,6 @@ const Authenticated = props => {
           )}
         />
       }
-
-      <Route
-        path={PAGES.TODO_ADD.PATH}
-        render={() => (
-          <TodoAddPage
-            { ...props }
-            headerTitle={PAGES.TODO_ADD.TITLE}
-          />
-        )}
-      />
-
-      <Route
-        path={PAGES.TODO_EDIT.PATH}
-        render={routeProps => (
-          <TodoEditPage
-            { ...props }
-            headerTitle={PAGES.TODO_EDIT.TITLE}
-            todoId={routeProps.match.params.todoId}
-          />
-        )}
-      />
-
-      <Route
-        path={PAGES.TODOS.PATH}
-        render={() => (
-          <TodosPage
-            { ...props }
-            headerTitle={PAGES.TODOS.TITLE}
-          />
-        )}
-      />
 
       <Route
         path={PAGES.NOT_FOUND.PATH}

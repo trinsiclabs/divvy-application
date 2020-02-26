@@ -1,7 +1,7 @@
 {
     "name": "trinsiclabs/app",
     "type": "silverstripe-recipe",
-    "description": "Trinsic Labs: App Starter Kit",
+    "description": "Back-end for the Divvy client application.",
     "require": {
         "php": ">=7.1.0",
         "silverstripe/recipe-core": "^4.5",

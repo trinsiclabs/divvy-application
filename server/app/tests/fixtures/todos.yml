@@ -1,9 +1,0 @@
-TrinsicLabs\App\Models\TodoModel:
-  TurnItOff:
-    Name: Turn it off
-
-  TurnItOnAgain:
-    Name: Turn it on again
-
-  StayShady:
-    Name: Stay shady

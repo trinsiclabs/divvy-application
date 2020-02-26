@@ -1,7 +1,0 @@
-SilverStripe\SiteConfig\SiteConfig:
-    SiteConfig:
-        Title: 'Trinsic Labs: App Starter Kit'
-        Tagline: Quick-start your prototype
-        CanViewType: Anyone
-        CanEditType: LoggedInUsers
-        CanCreateTopLevelType: LoggedInUsers

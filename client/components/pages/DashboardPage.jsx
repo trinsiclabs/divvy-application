@@ -24,7 +24,7 @@ const DashboardPage = props => {
           variant='subtitle1'
           gutterBottom
         >
-          You can navigate to the Todos section by using the menu.
+          Hello
         </Typography>
       </Grid>
     </Grid>
