@@ -10,12 +10,11 @@ back-end via [GraphQL](https://graphql.org/).
 
 UI components are provided by [Material UI](https://material-ui.com/)
 
-There are a few containers which make up the client application:
+There three containers which make up the client application:
 
 1. Apache / PHP
 2. MySQL
 3. Mailcatcher (dev only)
-4. CLI
 
 Before going any further make sure you have set up the host VM as described in
 the [platform docs](https://github.com/flashbackzoo/divvy).
@@ -70,6 +69,7 @@ SS_ENVIRONMENT_TYPE='live'
 SES_HOST=''
 SES_USERNAME=''
 SES_PASSWORD=''
+DIVVY_API_SERVER='http://api.divvy.com:3000'
 ```
 
 Environment variables are loaded into the application in
@@ -78,46 +78,22 @@ must be updated.
 
 ### Install the dependencies
 
-Development tools (composer, Node.js etc) are provided by the CLI container.
-In a new terminal window, log into the container, from the host VM:
-
-```
-$ sudo docker exec -it cli.app.divvy.com /bin/ash
-```
-
-You should see two directories `client` and `server`:
-
-```
-$ ls
-```
-
-These volumes map to the `client` and `server` directories in the application
-root and contain the front-end and back-end code respectively. The CLI
-container has all the tools you need to build the app.
-
 #### Server
 
-Install the PHP dependencies from the `server` directory:
+From the host VM:
 
 ```
-$ cd /var/app/server
+$ cd /home/vagrant/application/server
 $ composer install
 ```
 
-Now you have the PHP dependencies installed, you can provision the database:
-
-```
-$ ./vendor/bin/sake dev/build
-```
-
-You should see output saying the database build completed.
-
 #### Client
 
-From the `client` directory, install the JavaScript dependencies:
+From the host VM:
 
 ```
-$ cd /var/app/client
+$ cd /home/vagrant/application/client
+$ nvm use
 $ npm install
 ```
 

@@ -41,16 +41,3 @@ services:
       - 1080:1080
     networks:
       - network_divvy
-
-  cli.app.divvy.com:
-    image: alpine:3.10
-    container_name: cli.app.divvy.com
-    ports:
-      - 3001:3001
-    build:
-      context: ./dev
-    volumes:
-      - ./client:/var/app/client
-      - ./server:/var/app/server
-    networks:
-      - network_divvy
