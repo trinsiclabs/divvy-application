@@ -2,12 +2,8 @@
 
 namespace TrinsicLabs\App\Extensions;
 
-use SilverStripe\Forms\Form;
 use SilverStripe\Core\Extension;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\FormAction;
 use SilverStripe\Security\Security;
-use TrinsicLabs\App\Forms\TodoForm;
 use SilverStripe\Control\HTTPRequest;
 use TrinsicLabs\App\Services\ChannelApiDataService;
 

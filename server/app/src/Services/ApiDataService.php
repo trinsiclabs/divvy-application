@@ -18,8 +18,4 @@ abstract class ApiDataService
             ],
         ]);
     }
-
-    public function getItems(): array
-    {
-    }
 }

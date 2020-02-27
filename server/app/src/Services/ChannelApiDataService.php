@@ -6,11 +6,6 @@ class ChannelApiDataService extends ApiDataService
 {
     protected $path = '/channel';
 
-    function __construct(string $organisationSlug = '')
-    {
-        parent::__construct($organisationSlug);
-    }
-
     public function getItems(): array
     {
         $response = $this
