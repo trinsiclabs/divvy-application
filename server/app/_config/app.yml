@@ -19,3 +19,11 @@ SilverStripe\EnvironmentCheck\EnvironmentCheckSuite:
   registered_suites:
     health:
       - db
+
+SilverStripe\Core\Injector\Injector:
+  SecurityTokenController:
+    class: SilverStripe\Control\Middleware\RequestHandlerMiddlewareAdapter
+    properties:
+      RequestHandler: '%$TrinsicLabs\App\Controllers\ApiV1Controller'
+      Middlewares:
+        - '%$TrinsicLabs\App\Middleware\SecurityTokenMiddleware'

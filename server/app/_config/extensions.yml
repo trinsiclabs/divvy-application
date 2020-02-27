@@ -5,3 +5,7 @@ SilverStripe\Security\Member:
 Silverstripe\SiteConfig\SiteConfig:
   extensions:
     - TrinsicLabs\App\Extensions\SiteConfigExtension
+
+TrinsicLabs\App\Controllers\ApiV1Controller:
+  extensions:
+    - TrinsicLabs\App\Extensions\ApiV1ControllerChannelExtension

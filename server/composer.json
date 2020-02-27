@@ -3,7 +3,8 @@
     "type": "silverstripe-recipe",
     "description": "Back-end for the Divvy client application.",
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.3.0",
+        "guzzlehttp/guzzle": "^6.0",
         "silverstripe/recipe-core": "^4.5",
         "silverstripe/environmentcheck": "^2.1",
         "silverstripe/siteconfig": "^4.5",
