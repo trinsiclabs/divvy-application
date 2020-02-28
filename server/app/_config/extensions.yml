@@ -8,5 +8,5 @@ Silverstripe\SiteConfig\SiteConfig:
 
 TrinsicLabs\App\Controllers\ApiV1Controller:
   extensions:
-    - TrinsicLabs\App\Extensions\ApiV1ControllerChannelExtension
-    - TrinsicLabs\App\Extensions\ApiV1ControllerShareExtension
+    - TrinsicLabs\App\Extensions\ApiV1ControllerChannelsExtension
+    - TrinsicLabs\App\Extensions\ApiV1ControllerSharesExtension

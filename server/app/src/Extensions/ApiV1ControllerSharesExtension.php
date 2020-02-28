@@ -5,12 +5,12 @@ namespace TrinsicLabs\App\Extensions;
 use SilverStripe\Core\Extension;
 use SilverStripe\Security\Security;
 use SilverStripe\Control\HTTPRequest;
-use TrinsicLabs\App\Services\ShareApiDataService;
+use TrinsicLabs\App\Services\SharesApiDataService;
 
-class ApiV1ControllerShareExtension extends Extension
+class ApiV1ControllerSharesExtension extends Extension
 {
     private static $allowed_actions = [
-        'share',
+        'shares',
     ];
 
     /**
@@ -24,7 +24,7 @@ class ApiV1ControllerShareExtension extends Extension
             ->Account()
             ->OrganisationSlug;
 
-        $shareService = new ShareApiDataService($organisationSlug);
+        $shareService = new SharesApiDataService($organisationSlug);
 
         return $this->owner->sendResponse([
             'items' => $shareService->getItems($channel),
@@ -42,7 +42,7 @@ class ApiV1ControllerShareExtension extends Extension
             ->Account()
             ->OrganisationSlug;
 
-        $shareService = new ShareApiDataService($organisationSlug);
+        $shareService = new SharesApiDataService($organisationSlug);
 
         return $this->owner->sendResponse([
             'items' => $shareService->getItem($channel, $shareKey),
@@ -50,13 +50,13 @@ class ApiV1ControllerShareExtension extends Extension
     }
 
     /**
-     * Request handler for the /api/v1/channel route.
+     * Request handler for the /api/v1/shares route.
      *
      * @param HTTPRequest $request
      * @return HTTPResponse
      * @throws HTTPResponse_Exception
      */
-    public function share(HTTPRequest $request)
+    public function shares(HTTPRequest $request)
     {
         $this->owner->ensureAuthenticated();
 

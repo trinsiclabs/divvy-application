@@ -2,9 +2,9 @@
 
 namespace TrinsicLabs\App\Services;
 
-class ChannelApiDataService extends ApiDataService
+class ChannelsApiDataService extends ApiDataService
 {
-    protected $path = '/channel';
+    protected $path = '/channels';
 
     public function getItems(): array
     {
@@ -16,8 +16,6 @@ class ChannelApiDataService extends ApiDataService
             ->getBody()
             ->getContents();
 
-        var_dump($data);
-
-        return [];
+        return json_decode($data, true);
     }
 }

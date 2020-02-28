@@ -4,9 +4,9 @@ namespace TrinsicLabs\App\Services;
 
 use GuzzleHttp\Exception\ClientException;
 
-class ShareApiDataService extends ApiDataService
+class SharesApiDataService extends ApiDataService
 {
-    protected $path = '/share';
+    protected $path = '/shares';
 
     public function getItems(string $channel): array
     {

@@ -5,12 +5,12 @@ namespace TrinsicLabs\App\Extensions;
 use SilverStripe\Core\Extension;
 use SilverStripe\Security\Security;
 use SilverStripe\Control\HTTPRequest;
-use TrinsicLabs\App\Services\ChannelApiDataService;
+use TrinsicLabs\App\Services\ChannelsApiDataService;
 
-class ApiV1ControllerChannelExtension extends Extension
+class ApiV1ControllerChannelsExtension extends Extension
 {
     private static $allowed_actions = [
-        'channel',
+        'channels',
     ];
 
     /**
@@ -24,7 +24,7 @@ class ApiV1ControllerChannelExtension extends Extension
             ->Account()
             ->OrganisationSlug;
 
-        $channelService = new ChannelApiDataService($organisationSlug);
+        $channelService = new ChannelsApiDataService($organisationSlug);
 
         return $this->owner->sendResponse([
             'items' => $channelService->getItems(),
@@ -32,13 +32,13 @@ class ApiV1ControllerChannelExtension extends Extension
     }
 
     /**
-     * Request handler for the /api/v1/channel route.
+     * Request handler for the /api/v1/channels route.
      *
      * @param HTTPRequest $request
      * @return HTTPResponse
      * @throws HTTPResponse_Exception
      */
-    public function channel(HTTPRequest $request)
+    public function channels(HTTPRequest $request)
     {
         $this->owner->ensureAuthenticated();
 
