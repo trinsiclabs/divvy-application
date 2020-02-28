@@ -18,9 +18,7 @@ class ShareApiDataService extends ApiDataService
             ->getBody()
             ->getContents();
 
-        var_dump($data);
-
-        return [];
+        return json_decode($data, true);
     }
 
     public function getItem(string $channel, string $shareKey): array

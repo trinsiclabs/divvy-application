@@ -7,7 +7,6 @@ After:
 ---
 SilverStripe\Control\Director:
   rules:
-    #'api/v1//$Action/$ID/$Name': '%$SecurityTokenController'
     'api/v1//$Action/$ID/$Name': TrinsicLabs\App\Controllers\ApiV1Controller
     'graphql': '%$SilverStripe\GraphQL\Controller.default'
     '$Model/$ID/$Action': TrinsicLabs\App\Controllers\AppController

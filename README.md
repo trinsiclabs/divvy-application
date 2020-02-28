@@ -129,11 +129,23 @@ $ npm run start
 
 #### GraphQL
 
-There's some tooling for testing out GraphQL queries at:
+GraphQL is used to update and query application specific models. There's some
+tooling for testing GraphQL queries at:
 
 ```
 http://divvy.local/dev/graphiql/
 ```
+
+Also see the `server/app/src/GraphQL` directory.
+
+#### REST API
+
+There is a REST API used to update and query the Fabric network. Requests to
+this service are proxied to the API component, which handles authentication
+with the network.
+
+See `server/app/src/Controllers/ApiV1Controller.php` and related extensions in
+the `server/app/src/Extensions` directory.
 
 ### Running the tests
 

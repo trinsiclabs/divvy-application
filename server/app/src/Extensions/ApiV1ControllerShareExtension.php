@@ -20,8 +20,14 @@ class ApiV1ControllerShareExtension extends Extension
      */
     public function fetchAllShares(string $channel)
     {
+        $organisationSlug = Security::getCurrentUser()
+            ->Account()
+            ->OrganisationSlug;
+
+        $shareService = new ShareApiDataService($organisationSlug);
+
         return $this->owner->sendResponse([
-            'items' => [],
+            'items' => $shareService->getItems($channel),
         ]);
     }
 
