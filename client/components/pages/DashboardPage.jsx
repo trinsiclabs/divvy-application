@@ -18,13 +18,13 @@ const DashboardPage = props => {
           component='h1'
           gutterBottom
         >
-          App dashboard
+          Your project
         </Typography>
         <Typography
           variant='subtitle1'
           gutterBottom
         >
-          Hello
+          Details about your project.
         </Typography>
       </Grid>
     </Grid>

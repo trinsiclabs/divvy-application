@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import {makeStyles} from '@material-ui/core/styles';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import HomeIcon from '@material-ui/icons/Home';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -42,9 +42,9 @@ const DrawerComponent = props => {
             onClick={handleListItemClick(props.routeTo, PAGES.HOME.PATH)}
           >
             <ListItemIcon>
-              <DashboardIcon />
+              <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary='Dashboard' />
+            <ListItemText primary={props.orgName} />
           </ListItem>
 
           <ListItem

@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 const ADD_ACCOUNT = gql`
@@ -9,6 +9,19 @@ const ADD_ACCOUNT = gql`
   }
 `;
 
+const READ_ACCOUNT = gql`
+  {
+    readAccount {
+      OrganisationName
+      OrganisationSlug
+    }
+  }
+`;
+
 export const addAccountMutation = options => {
   return useMutation(ADD_ACCOUNT, { ...options });
+};
+
+export const readAccountQuery = options => {
+  return useQuery(READ_ACCOUNT, { ...options });
 };

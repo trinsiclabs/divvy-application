@@ -68,7 +68,7 @@ const HeaderComponent = props => {
               </IconButton>
             }
 
-            {logo}
+            {/* {logo} */}
 
             <Typography
               id='page-title'

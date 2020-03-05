@@ -21,6 +21,7 @@ class AccountTypeCreator extends TypeCreator
             'ID' => ['type' => Type::nonNull(Type::id())],
             'OrganisationCreated' => ['type' => Type::nonNull(Type::boolean())],
             'OrganisationName' => ['type' => Type::nonNull(Type::string())],
+            'OrganisationSlug' => ['type' => Type::nonNull(Type::string())],
         ];
     }
 }

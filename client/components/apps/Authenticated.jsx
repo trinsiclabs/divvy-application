@@ -17,7 +17,7 @@ const Authenticated = props => {
         render={() => (
           <DashboardPage
             { ...props }
-            headerTitle='Dashboard'
+            headerTitle={props.Account.OrganisationName}
           />
         )}
       />

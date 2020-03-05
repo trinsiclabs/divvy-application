@@ -38,10 +38,11 @@ const withLayout = WrappedComponent => {
           <Breadcrumbs location={props.location} />
         }
 
-        {props.Member &&
+        {props.Account && props.Member &&
           <Drawer
             isOpen={drawerOpen}
             onClose={() => setDrawerOpen(!drawerOpen)}
+            orgName={props.Account.OrganisationName}
             routeTo={props.routeTo}
           />
         }
