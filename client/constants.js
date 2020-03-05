@@ -34,4 +34,8 @@ export const PAGES = {
     TITLE: 'Confirm your email',
     PATH: '/signup/confirm/:token',
   },
+  WALLET: {
+    TITLE: 'Wallet',
+    PATH: '/wallet',
+  },
 };

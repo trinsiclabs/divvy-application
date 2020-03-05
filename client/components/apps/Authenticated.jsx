@@ -5,6 +5,7 @@ import { PAGES } from '../../constants';
 import withRouting from '../providers/RoutingProvider';
 
 const DashboardPage = React.lazy(() => import('../pages/DashboardPage'));
+const WalletPage = React.lazy(() => import('../pages/WalletPage'));
 const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage'));
 
 const Authenticated = props => {
@@ -17,6 +18,17 @@ const Authenticated = props => {
           <DashboardPage
             { ...props }
             headerTitle='Dashboard'
+          />
+        )}
+      />
+
+      <Route
+        exact
+        path={PAGES.WALLET.PATH}
+        render={() => (
+          <WalletPage
+            { ...props }
+            headerTitle={PAGES.WALLET.TITLE}
           />
         )}
       />
