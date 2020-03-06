@@ -5,10 +5,9 @@ import restClientCreate from '../../graphql/clients/restClient';
 const withChannels = WrappedComponent => {
   const ChannelsProvider = props => {
     const client = restClientCreate();
-    const channels = client.query({ query: READ_CHANNELS });
-
+    const readChannels = () => client.query({ query: READ_CHANNELS });
     return (
-      <WrappedComponent { ...{ ...props, channels } } />
+      <WrappedComponent { ...{ ...props, readChannels } } />
     );
   };
 
