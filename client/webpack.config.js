@@ -16,7 +16,6 @@ module.exports = {
   devtool: isDev ? 'source-map' : false,
 
   devServer: {
-    hot: true,
     contentBase: outputPath,
     host: '0.0.0.0',
     port: 3001,
