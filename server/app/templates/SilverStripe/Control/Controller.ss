@@ -14,6 +14,7 @@
         <script>
             window.APP = window.APP || {};
             window.APP.GRAPHQL_URI = '$GraphQLURI';
+            window.APP.REST_V1_URI = '$RestV1URI';
             window.APP.SECURITY_ID = '$SecurityID';
         </script>
     </body>

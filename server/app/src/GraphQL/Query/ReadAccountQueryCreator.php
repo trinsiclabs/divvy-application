@@ -27,7 +27,6 @@ class ReadAccountQueryCreator extends QueryCreator implements OperationResolver
         $member = Security::getCurrentUser();
 
         if (!$member) {
-            user_error('Tried to read account without being logged in.', E_USER_NOTICE);
             return;
         }
 

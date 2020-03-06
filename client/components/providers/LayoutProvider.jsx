@@ -56,7 +56,7 @@ const withLayout = WrappedComponent => {
 
         {props.message}
 
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     );
   };

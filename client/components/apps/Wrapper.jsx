@@ -17,15 +17,15 @@ const Wrapper = props => {
 
   let combinedProps = { ...props };
 
-  if (!account.loading && account.data.readAccount !== null) {
+  if (!account.loading && account.data && account.data.readAccount) {
     combinedProps.Account = account.data.readAccount[0];
   }
 
-  if (!siteConfig.loading && siteConfig.data.readSiteConfig !== null) {
+  if (!siteConfig.loading && siteConfig.data && siteConfig.data.readSiteConfig) {
     combinedProps.AllowPublicSignup = siteConfig.data.readSiteConfig[0].AllowPublicSignup;
   }
 
-  if (!member.loading && member.data.readMember !== null) {
+  if (!member.loading && member.data && member.data.readMember) {
     combinedProps.Member = member.data.readMember[0];
   }
 

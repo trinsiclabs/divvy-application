@@ -27,11 +27,11 @@ class AppController extends Controller implements PermissionProvider
     {
         parent::init();
 
-        if (Director::isDev()) {
-            Requirements::javascript('http://divvy.local:3001/main.js');
-        } else {
+        // if (Director::isDev()) {
+        //     Requirements::javascript('http://divvy.local:3001/main.js');
+        // } else {
             Requirements::javascript('app/main.js');
-        }
+        // }
     }
 
     public function providePermissions()
@@ -47,6 +47,7 @@ class AppController extends Controller implements PermissionProvider
 
         return [
             'GraphQLURI' => Director::absoluteBaseURL() . 'graphql',
+            'RestV1URI' => Director::absoluteBaseURL() . 'api/v1',
             'SecurityID' => SecurityToken::getSecurityID(),
         ];
     }
