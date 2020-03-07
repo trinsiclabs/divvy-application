@@ -39,6 +39,7 @@ export const PAGES = {
     PATH: '/wallet',
   },
   WALLET_ITEM: {
+    TITLE: 'Organisation',
     PATH: '/wallet/:slug'
   },
 };

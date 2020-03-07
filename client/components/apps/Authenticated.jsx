@@ -6,6 +6,7 @@ import withRouting from '../providers/RoutingProvider';
 
 const DashboardPage = React.lazy(() => import('../pages/DashboardPage'));
 const WalletPage = React.lazy(() => import('../pages/WalletPage'));
+const WalletItemPage = React.lazy(() => import('../pages/WalletItemPage'));
 const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage'));
 
 const Authenticated = props => {
@@ -31,6 +32,18 @@ const Authenticated = props => {
             headerTitle={PAGES.WALLET.TITLE}
           />
         )}
+      />
+
+      <Route
+        exact
+        path={PAGES.WALLET_ITEM.PATH}
+        render={routeProps => {
+          return <WalletItemPage
+            { ...props }
+            headerTitle={PAGES.WALLET.TITLE}
+            slug={routeProps.match.params.slug}
+          />
+        }}
       />
 
       {props.AllowPublicSignup &&

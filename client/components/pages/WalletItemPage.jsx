@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { PAGES } from '../../constants';
-import { compilePath } from '../../util/path';
 import withChannels from '../providers/ChannelsProvider';
 import withLayout from '../providers/LayoutProvider';
 import withShares from '../providers/SharesProvider';
 import Table from '../shared/Table';
 
-const WalletPage = props => {
+const WalletItemPage = props => {
   const [loading, setLoading] = useState(true);
-  const [channels, setChannels] = useState([]);
+  const [channel, setChannel] = useState(null);
   const [shares, setShares] = useState({});
 
   useEffect(() => {
@@ -21,7 +19,15 @@ const WalletPage = props => {
       .readChannels()
       .then(res => {
         const items = res.data.channels.items;
-        setChannels(items);
+        const channel = items.find(({ Slug }) => Slug === props.slug);
+
+        // Make sure the requested channel is in the users channel list.
+        if (!channel) {
+            props.routeTo(PAGES.NOT_FOUND.PATH);
+            return;
+        }
+
+        setChannel(channel);
 
         // Fetch shares for each channel.
         return Promise.all(items.map(({ Slug }) => {
@@ -46,13 +52,16 @@ const WalletPage = props => {
         item
         xs={12}
       >
-        <Typography
-          variant='h2'
-          component='h1'
-          gutterBottom
-        >
-          Wallet
-        </Typography>
+        {loading
+          ? <Skeleton height={72} width='50%' />
+          : <Typography
+              variant='h2'
+              component='h1'
+              gutterBottom
+            >
+              {channel.Name}
+            </Typography>
+        }
 
         {loading
           ? <>
@@ -62,23 +71,16 @@ const WalletPage = props => {
             </>
           :
             <Table
-              head={['Project', 'Equity', 'Value']}
-              body={channels.map(({ Name, Slug }) => {
-                const equity = shares[Slug]
-                  ? `${shares[Slug].length}%`
-                  : '';
-                const value = shares[Slug]
-                  ? `$${shares[Slug].reduce((result, share) => result + share.faceValue, 0)}`
-                  : '';
-
+              head={['Share ID', 'Issued', 'Value']}
+              body={shares[channel.Slug].map(({ faceValue, issueDateTime, shareNumber }) => {
+                const date = new Date(issueDateTime).toLocaleDateString('en-NZ');
                 return [
-                  <Link to={compilePath(PAGES.WALLET_ITEM.PATH, { slug: Slug })}>
-                    {Name}
-                  </Link>,
-                  equity,
-                  value,
+                  shareNumber,
+                  date,
+                  `$${faceValue}`,
                 ];
               })}
+              pagination
             />
         }
       </Grid>
@@ -86,7 +88,7 @@ const WalletPage = props => {
   );
 };
 
-let Page = WalletPage;
+let Page = WalletItemPage;
 
 Page = withChannels(Page);
 Page = withShares(Page);
