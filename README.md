@@ -52,7 +52,7 @@ $ sudo docker-compose up -d
 
 ### Define environment variables
 
-From the host VM, create `/home/vagrant/application/server` with
+From the host VM, create `/home/vagrant/application/server/.env` with
 the following variables:
 
 ```
@@ -65,10 +65,7 @@ SS_BASE_URL='http://divvy.local'
 SS_SEND_ALL_EMAILS_FROM='mail@divvy.local'
 SS_DEFAULT_ADMIN_USERNAME='admin'
 SS_DEFAULT_ADMIN_PASSWORD='admin'
-SS_ENVIRONMENT_TYPE='live'
-SES_HOST=''
-SES_USERNAME=''
-SES_PASSWORD=''
+SS_ENVIRONMENT_TYPE='dev'
 DIVVY_API_SERVER='http://api.divvy.com:3000'
 ```
 
@@ -102,7 +99,7 @@ Scripts for building the front-end are in `/var/app/client/package.json`
 For development run:
 
 ```
-$ npm run start`
+$ npm run start
 ```
 
 For a production build run:
@@ -110,6 +107,14 @@ For a production build run:
 ```
 $ npm run build
 ```
+
+Note - the client app needs to run in the same mode as the server app, for
+example "dev" or "production".
+
+When the client is running in development mode, `SS_ENVIRONMENT_TYPE` must be
+`dev` (this is the default).
+
+When running a production build, `SS_ENVIRONMENT_TYPE` must be `live`.
 
 ### Using the app
 
@@ -126,6 +131,18 @@ in the browser:
 $ cd /home/vagrant/application/client
 $ npm run start
 ```
+
+#### Admin
+
+The client application has a admin UI which can be accessed at
+`http://divvy.local/admin` in your browser. The default admin username and
+password are defined the the enviuronment file you create in a previous step.
+
+From the admin area you can see user accounts and apply application settings
+such as enabling or disabling public signup.
+
+The admin area is fully customisable, see the
+[Silverstripe](https://docs.silverstripe.org/en/4/) docs for details.
 
 #### GraphQL
 
@@ -181,3 +198,5 @@ Mailcatcher is available on `http://divvy.local:1080`
 
 This will be used in `dev` and `test` environments.
 See `server/app/_config/email.yml` for more details.
+
+Mailcatcher will recieve emails (verification etc) from the signup flow.
