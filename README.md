@@ -17,7 +17,7 @@ There three containers which make up the client application:
 3. Mailcatcher (dev only)
 
 Before going any further make sure you have set up the host VM as described in
-the [platform docs](https://github.com/flashbackzoo/divvy).
+the [platform docs](https://github.com/trinsiclabs/divvy).
 
 ### Set up the domain name
 

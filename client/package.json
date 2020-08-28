@@ -13,7 +13,7 @@
     "name": "Trinsic Labs",
     "email": "trinsiclabs@gmail.com"
   },
-  "license": "UNLICENCED",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
